@@ -28,12 +28,13 @@ function App() {
       setLoading(true);
       setError(null);
 
-      // Load all data files
+      // Load all data files with correct GitHub Pages paths
+      const basePath = process.env.PUBLIC_URL || '';
       const dataPromises = [
-        fetch('/data/ber_results.json').then(res => res.ok ? res.json() : null),
-        fetch('/data/constellation_data.json').then(res => res.ok ? res.json() : null),
-        fetch('/data/spectrogram_data.json').then(res => res.ok ? res.json() : null),
-        fetch('/data/simulation_summary.json').then(res => res.ok ? res.json() : null)
+        fetch(`${basePath}/data/ber_results.json`).then(res => res.ok ? res.json() : null),
+        fetch(`${basePath}/data/constellation_data.json`).then(res => res.ok ? res.json() : null),
+        fetch(`${basePath}/data/spectrogram_data.json`).then(res => res.ok ? res.json() : null),
+        fetch(`${basePath}/data/simulation_summary.json`).then(res => res.ok ? res.json() : null)
       ];
 
       const [ber, constellation, spectrogram, summary] = await Promise.all(dataPromises);
