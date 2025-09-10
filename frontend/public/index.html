@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+function configureProcessing(index) {
+            console.log(`⚙️ CONFIGURING PROCESSING MODULE #${index}`);
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -2146,7 +2148,7 @@
                     const item = document.createElement('div');
                     item.className = 'feed-item';
                     item.innerHTML = `
-                        <div class="feed-time">${new Date().toLocaleTimeString()} • SECRET</div>
+                        <div class="feed-time">${new Date().toLocaleTimeString()}</div>
                         <div class="feed-message">✅ ATTACK NEUTRALIZED: ${attackType.toUpperCase()} successfully countered by AI systems</div>
                         <div class="feed-agent">DEFENSE COORDINATION CENTER</div>
                     `;
