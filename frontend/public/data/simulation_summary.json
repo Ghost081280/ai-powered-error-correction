@@ -1,0 +1,27 @@
+{
+  "simulation_parameters": {
+    "num_bits": 1000,
+    "snr_range_db": [-2, 12],
+    "noise_types": ["awgn", "burst", "narrowband"]
+  },
+  "performance_summary": {
+    "awgn": {
+      "average_classical_ber": 0.0281,
+      "average_ai_ber": 0.0194,
+      "improvement_percent": 31.0,
+      "ai_better": true
+    },
+    "burst": {
+      "average_classical_ber": 0.0394,
+      "average_ai_ber": 0.0273,
+      "improvement_percent": 30.7,
+      "ai_better": true
+    },
+    "narrowband": {
+      "average_classical_ber": 0.0328,
+      "average_ai_ber": 0.0218,
+      "improvement_percent": 33.5,
+      "ai_better": true
+    }
+  }
+}
