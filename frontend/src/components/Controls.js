@@ -57,6 +57,15 @@ const Controls = ({
             <label className="checkbox-label">
               <input 
                 type="checkbox" 
+                checked={showClassical} 
+                onChange={(e) => setShowClassical(e.target.checked)}
+              />
+              <span className="checkmark"></span>
+              Classical FEC (Hamming)
+            </label>
+            <label className="checkbox-label">
+              <input 
+                type="checkbox" 
                 checked={showAI} 
                 onChange={(e) => setShowAI(e.target.checked)}
               />
@@ -150,12 +159,3 @@ const Controls = ({
 };
 
 export default Controls;
-                type="checkbox" 
-                checked={showClassical} 
-                onChange={(e) => setShowClassical(e.target.checked)}
-              />
-              <span className="checkmark"></span>
-              Classical FEC (Hamming)
-            </label>
-            <label className="checkbox-label">
-              <input
