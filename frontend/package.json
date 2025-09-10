@@ -2,7 +2,7 @@
   "name": "ai-error-correction-frontend",
   "version": "1.0.0",
   "description": "Frontend visualization for AI Error Correction demonstration",
-  "homepage": "https://yourusername.github.io/ai-error-correction-demo",
+  "homepage": "https://ghost081280.github.io/ai-powered-error-correction",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
