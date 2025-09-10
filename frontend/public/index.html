@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Signal Error Correction | Advanced Communication Systems</title>
+    <title>QUANTUM-SHIELD | Advanced Signal Defense System</title>
     <style>
         * {
             margin: 0;
@@ -18,16 +18,21 @@
             --danger: #ff0044;
             --warning: #ffaa00;
             --success: #00ff88;
+            --hostile: #ff1744;
+            --friendly: #00e676;
+            --neutral: #ffa726;
             --bg-dark: #0a0e1a;
             --bg-darker: #060912;
             --bg-card: rgba(10, 20, 40, 0.8);
+            --bg-alert: rgba(255, 23, 68, 0.1);
             --border: rgba(0, 255, 136, 0.2);
+            --border-hostile: rgba(255, 23, 68, 0.3);
             --text-primary: #ffffff;
             --text-secondary: #8892b0;
             --gradient-1: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
             --gradient-2: linear-gradient(135deg, #7c3aed 0%, #00ccff 100%);
             --gradient-shield: linear-gradient(135deg, #1a4d2e 0%, #00ff88 50%, #00ccff 100%);
-            --gradient-neural: linear-gradient(135deg, #00ff88 0%, #00aa66 100%);
+            --gradient-threat: linear-gradient(135deg, #ff1744 0%, #ff5722 100%);
             --gradient-quantum: linear-gradient(135deg, #7c3aed 0%, #ff00ff 50%, #00ccff 100%);
         }
 
@@ -48,16 +53,35 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.3;
+            opacity: 0.4;
         }
 
         /* Container */
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1800px;
+            max-width: 1900px;
             margin: 0 auto;
             padding: 20px;
+        }
+
+        /* Classification Banner */
+        .classification-banner {
+            background: var(--gradient-1);
+            color: var(--bg-darker);
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            animation: demoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes demoPulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
         }
 
         /* Header */
@@ -69,6 +93,24 @@
             margin-bottom: 30px;
             backdrop-filter: blur(15px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            animation: securitySweep 8s linear infinite;
+        }
+
+        @keyframes securitySweep {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .header-content {
@@ -77,6 +119,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .header-left {
@@ -85,7 +129,7 @@
             gap: 25px;
         }
 
-        /* Logo */
+        /* Enhanced Logo */
         .logo-container {
             width: 80px;
             height: 80px;
@@ -101,15 +145,16 @@
             background: var(--gradient-shield);
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             position: relative;
-            animation: shieldPulse 4s ease-in-out infinite;
+            animation: quantumShield 4s ease-in-out infinite;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
         }
 
-        @keyframes shieldPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        @keyframes quantumShield {
+            0%, 100% { transform: scale(1) rotate(0deg); box-shadow: 0 0 20px rgba(0, 255, 136, 0.6); }
+            50% { transform: scale(1.05) rotate(180deg); box-shadow: 0 0 30px rgba(0, 255, 136, 0.8); }
         }
 
         .logo-eye {
@@ -128,33 +173,40 @@
             height: 20px;
             background: var(--gradient-1);
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
+            animation: aiEye 2s ease-in-out infinite;
         }
 
-        .rotating-dots {
+        @keyframes aiEye {
+            0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.8); }
+            50% { box-shadow: 0 0 25px rgba(0, 204, 255, 1); }
+        }
+
+        .orbital-defense {
             position: absolute;
             width: 100%;
             height: 100%;
-            animation: rotate 12s linear infinite;
+            animation: orbitalRotation 20s linear infinite;
         }
 
-        @keyframes rotate {
+        @keyframes orbitalRotation {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        .dot {
+        .defense-node {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
             background: var(--primary);
             border-radius: 50%;
-            box-shadow: 0 0 4px var(--primary);
+            box-shadow: 0 0 8px var(--primary);
         }
 
-        .dot:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
-        .dot:nth-child(2) { top: 50%; right: 0; transform: translateY(-50%); }
-        .dot:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .defense-node:nth-child(1) { top: -3px; left: 50%; transform: translateX(-50%); }
+        .defense-node:nth-child(2) { top: 50%; right: -3px; transform: translateY(-50%); }
+        .defense-node:nth-child(3) { bottom: -3px; left: 50%; transform: translateX(-50%); }
+        .defense-node:nth-child(4) { top: 50%; left: -3px; transform: translateY(-50%); }
 
         .brand-info {
             display: flex;
@@ -180,8 +232,37 @@
 
         .header-right {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Threat Level Indicator */
+        .threat-level {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: var(--bg-alert);
+            border: 1px solid var(--border-hostile);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .threat-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--hostile);
+            box-shadow: 0 0 8px var(--hostile);
+            animation: threatPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes threatPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
         }
 
         /* Status Badges */
@@ -206,6 +287,12 @@
             transition: all 0.3s ease;
         }
 
+        .status-badge.hostile {
+            background: var(--bg-alert);
+            border-color: var(--border-hostile);
+            color: var(--hostile);
+        }
+
         .status-badge:hover {
             background: rgba(0, 255, 136, 0.15);
             transform: translateY(-2px);
@@ -221,31 +308,99 @@
             animation: statusPulse 3s ease-in-out infinite;
         }
 
+        .status-light.hostile {
+            background: var(--hostile);
+            box-shadow: 0 0 8px var(--hostile);
+        }
+
         @keyframes statusPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.8; transform: scale(1.1); }
         }
 
-        /* Main Dashboard Grid */
-        .dashboard-grid {
+        /* Threat Assessment Grid */
+        .threat-assessment {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 30px;
             margin-bottom: 30px;
         }
 
-        /* System Overview Card */
-        .system-overview {
+        /* Real-time Attack Simulation */
+        .attack-simulation {
+            background: var(--bg-card);
+            border: 1px solid var(--border-hostile);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(255, 23, 68, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .attack-simulation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 23, 68, 0.1), transparent);
+            animation: attackScan 3s linear infinite;
+        }
+
+        @keyframes attackScan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .simulation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-hostile);
+            position: relative;
+            z-index: 2;
+        }
+
+        .simulation-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--hostile);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .attack-canvas {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border-hostile);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #attackVisualization {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Defense Matrix */
+        .defense-matrix {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 15px;
             padding: 25px;
             backdrop-filter: blur(15px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            grid-column: 1 / -1;
         }
 
-        .overview-header {
+        .matrix-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -254,35 +409,33 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .overview-title {
-            font-size: 24px;
+        .matrix-title {
+            font-size: 18px;
             font-weight: bold;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .system-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+        .defense-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .metric-card {
+        .defense-layer {
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%);
             border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
+            border-radius: 10px;
+            padding: 15px;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .metric-card::before {
+        .defense-layer::before {
             content: '';
             position: absolute;
             top: 0;
@@ -290,55 +443,55 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            animation: metricScan 4s linear infinite;
+            transition: left 0.5s ease;
         }
 
-        @keyframes metricScan {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .defense-layer:hover::before {
+            left: 100%;
         }
 
-        .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
-            border-color: var(--primary);
+        .defense-layer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
         }
 
-        .metric-value {
-            font-size: 32px;
+        .layer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .layer-name {
+            font-size: 14px;
             font-weight: bold;
             color: var(--primary);
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 1;
         }
 
-        .metric-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .metric-trend {
+        .layer-status {
             font-size: 12px;
-            margin-top: 5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .trend-up {
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: rgba(0, 255, 136, 0.2);
             color: var(--success);
+            text-transform: uppercase;
         }
 
-        .trend-down {
-            color: var(--danger);
+        .layer-status.active { background: rgba(0, 255, 136, 0.3); }
+        .layer-status.adaptive { background: rgba(0, 204, 255, 0.3); color: var(--secondary); }
+        .layer-status.quantum { background: rgba(124, 58, 237, 0.3); color: var(--accent); }
+
+        /* Signal Intelligence Dashboard */
+        .sigint-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        /* Algorithm Comparison Section */
-        .algorithm-comparison {
+        /* Spectrum Analyzer */
+        .spectrum-analyzer {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 15px;
@@ -347,103 +500,227 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
-        .comparison-header {
+        .analyzer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid var(--border);
         }
 
-        .comparison-title {
-            font-size: 20px;
+        .analyzer-title {
+            font-size: 16px;
             font-weight: bold;
             color: var(--secondary);
         }
 
-        .algorithm-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .spectrum-canvas {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .algorithm-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 255, 136, 0.05) 100%);
+        #spectrumChart {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Threat Detection */
+        .threat-detection {
+            background: var(--bg-card);
+            border: 1px solid var(--border-hostile);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(255, 23, 68, 0.1);
+        }
+
+        .detection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-hostile);
+        }
+
+        .detection-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--hostile);
+        }
+
+        .threat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .threat-item {
+            background: rgba(255, 23, 68, 0.05);
+            border: 1px solid rgba(255, 23, 68, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .threat-item:hover {
+            background: rgba(255, 23, 68, 0.1);
+            transform: translateX(5px);
+        }
+
+        .threat-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .threat-type {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--hostile);
+        }
+
+        .threat-severity {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+
+        .severity-high {
+            background: rgba(255, 23, 68, 0.3);
+            color: var(--hostile);
+        }
+
+        .severity-medium {
+            background: rgba(255, 170, 0, 0.3);
+            color: var(--warning);
+        }
+
+        .severity-low {
+            background: rgba(0, 230, 118, 0.3);
+            color: var(--success);
+        }
+
+        .threat-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        /* AI Countermeasures */
+        .ai-countermeasures {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .countermeasures-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .countermeasures-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .countermeasure-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .countermeasure-item {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 8px;
+            padding: 12px;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
         }
 
-        .algorithm-card::after {
+        .countermeasure-item::after {
             content: '';
             position: absolute;
             top: 0;
             right: 0;
-            width: 4px;
+            width: 3px;
             height: 0;
-            background: var(--gradient-1);
+            background: var(--gradient-quantum);
             transition: height 0.3s ease;
         }
 
-        .algorithm-card:hover::after {
+        .countermeasure-item:hover::after {
             height: 100%;
         }
 
-        .algorithm-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+        .countermeasure-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(124, 58, 237, 0.2);
         }
 
-        .algorithm-header {
+        .countermeasure-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
         }
 
-        .algorithm-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .algorithm-status {
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            background: rgba(0, 255, 136, 0.2);
-            color: var(--success);
-        }
-
-        .algorithm-metrics {
-            margin-bottom: 15px;
-        }
-
-        .algorithm-metric {
-            display: flex;
-            justify-content: space-between;
-            margin: 8px 0;
+        .countermeasure-name {
             font-size: 14px;
-        }
-
-        .metric-name {
-            color: var(--text-secondary);
-        }
-
-        .metric-val {
-            color: var(--text-primary);
             font-weight: bold;
+            color: var(--accent);
         }
 
-        /* Real-time Visualization Section */
-        .visualization-section {
+        .countermeasure-status {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            background: rgba(124, 58, 237, 0.3);
+            color: var(--accent);
+        }
+
+        .countermeasure-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Advanced Control Systems */
+        .control-systems {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Electronic Warfare Suite */
+        .ew-suite {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 15px;
@@ -452,7 +729,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
-        .visualization-header {
+        .ew-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -461,10 +738,182 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .visualization-title {
+        .ew-title {
             font-size: 20px;
             font-weight: bold;
-            color: var(--accent);
+            color: var(--primary);
+        }
+
+        .ew-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .ew-control {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .control-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .control-display {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            color: var(--bg-darker);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .control-btn.danger {
+            background: var(--gradient-threat);
+        }
+
+        .control-btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--primary);
+        }
+
+        /* Mission Status */
+        .mission-status {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .mission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mission-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .mission-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mission-metric {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .metric-name {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .metric-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .metric-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Activity Feeds Enhanced */
+        .activity-feeds {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .activity-feed {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .feed-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .live-indicator {
@@ -488,179 +937,6 @@
         @keyframes livePulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.5); opacity: 0.5; }
-        }
-
-        /* Signal Visualization Canvas */
-        .signal-canvas {
-            width: 100%;
-            height: 300px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #signalChart {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Interactive Controls */
-        .interactive-controls {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 25px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            grid-column: 1 / -1;
-        }
-
-        .controls-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .controls-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .controls-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .control-group {
-            background: rgba(0, 255, 136, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .control-label {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .control-slider {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        .slider {
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: rgba(255, 255, 255, 0.1);
-            outline: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-            -webkit-appearance: none;
-        }
-
-        .slider:hover {
-            opacity: 1;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-        }
-
-        .slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-        }
-
-        .control-value {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--primary);
-            text-align: center;
-        }
-
-        .control-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .control-btn {
-            flex: 1;
-            background: var(--gradient-1);
-            border: none;
-            border-radius: 6px;
-            padding: 8px 12px;
-            color: var(--bg-darker);
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .control-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 3px 15px rgba(0, 255, 136, 0.3);
-        }
-
-        .control-btn.secondary {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--primary);
-        }
-
-        /* Activity Feed */
-        .activity-feed {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 15px;
-            padding: 25px;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        .feed-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .feed-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .feed-content {
@@ -694,9 +970,14 @@
             border-left-color: var(--warning);
         }
 
-        .feed-item.error {
-            background: rgba(255, 0, 68, 0.05);
-            border-left-color: var(--danger);
+        .feed-item.hostile {
+            background: rgba(255, 23, 68, 0.05);
+            border-left-color: var(--hostile);
+        }
+
+        .feed-item.quantum {
+            background: rgba(124, 58, 237, 0.05);
+            border-left-color: var(--accent);
         }
 
         .feed-time {
@@ -712,7 +993,14 @@
             line-height: 1.4;
         }
 
-        /* Footer */
+        .feed-agent {
+            font-size: 11px;
+            color: var(--accent);
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Footer Enhanced */
         .footer {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -776,42 +1064,44 @@
             margin-bottom: 15px;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+        .footer-classification {
+            font-size: 10px;
+            color: var(--hostile);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
         }
 
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 12px;
-            transition: all 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 15px;
-        }
-
-        .footer-link:hover {
-            color: var(--primary);
-            background: rgba(0, 255, 136, 0.1);
-        }
-
-        .footer-copyright {
-            color: var(--text-secondary);
-            font-size: 11px;
-            border-top: 1px solid var(--border);
-            padding-top: 15px;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 1200px) {
-            .dashboard-grid {
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .threat-assessment {
                 grid-template-columns: 1fr;
             }
             
-            .algorithm-cards {
+            .sigint-dashboard {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .control-systems {
+                grid-template-columns: 1fr;
+            }
+            
+            .activity-feeds {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .sigint-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .activity-feeds {
+                grid-template-columns: 1fr;
+            }
+            
+            .ew-controls {
                 grid-template-columns: 1fr;
             }
         }
@@ -824,22 +1114,11 @@
             .status-badges {
                 order: -1;
                 justify-content: center;
+                flex-wrap: wrap;
             }
             
-            .system-metrics {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .controls-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-links {
-                gap: 15px;
-            }
-
-            .footer {
-                margin: 30px 15px 15px 15px;
+            .threat-level {
+                order: -2;
             }
         }
 
@@ -861,34 +1140,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
-
-        /* Data Flow Animation */
-        .data-flow {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 6px var(--primary);
-            animation: dataFlow 3s linear infinite;
-        }
-
-        @keyframes dataFlow {
-            0% {
-                transform: translateX(0) translateY(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(200px) translateY(-50px);
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -897,15 +1148,21 @@
 
     <!-- Container -->
     <div class="container">
+        <!-- Classification Banner -->
+        <div class="classification-banner">
+            ⚠️ CLASSIFIED - QUANTUM-SHIELD DEFENSE SYSTEM - AUTHORIZED PERSONNEL ONLY ⚠️
+        </div>
+
         <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <div class="header-left">
                     <div class="logo-container">
-                        <div class="rotating-dots">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
+                        <div class="orbital-defense">
+                            <span class="defense-node"></span>
+                            <span class="defense-node"></span>
+                            <span class="defense-node"></span>
+                            <span class="defense-node"></span>
                         </div>
                         <div class="logo-shield">
                             <div class="logo-eye">
@@ -914,228 +1171,320 @@
                         </div>
                     </div>
                     <div class="brand-info">
-                        <h1 class="brand-name">AI SIGNAL CORRECTION</h1>
-                        <p class="brand-tagline">Advanced Communication Systems</p>
+                        <h1 class="brand-name">QUANTUM-SHIELD</h1>
+                        <p class="brand-tagline">Advanced Signal Defense System</p>
                     </div>
                 </div>
                 <div class="header-right">
+                    <div class="threat-level">
+                        <div class="threat-indicator"></div>
+                        <span>THREAT LEVEL: HIGH</span>
+                    </div>
                     <div class="status-badges">
-                        <div class="status-badge" onclick="toggleAlgorithm('classical')">
+                        <div class="status-badge">
                             <div class="status-light"></div>
-                            <span>CLASSICAL FEC ACTIVE</span>
+                            <span>AI SHIELD ACTIVE</span>
                         </div>
-                        <div class="status-badge" onclick="toggleAlgorithm('ai')">
+                        <div class="status-badge">
                             <div class="status-light"></div>
-                            <span>AI DENOISING ACTIVE</span>
+                            <span>QUANTUM ECM</span>
+                        </div>
+                        <div class="status-badge hostile">
+                            <div class="status-light hostile"></div>
+                            <span>HOSTILE SIGNALS</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- System Overview -->
-        <div class="system-overview">
-            <div class="overview-header">
-                <h2 class="overview-title">System Performance Overview</h2>
-                <div class="live-indicator">
-                    <div class="live-dot"></div>
-                    <span>LIVE DATA</span>
-                </div>
-            </div>
-            
-            <div class="system-metrics">
-                <div class="metric-card" onclick="showMetricDetails('ber')">
-                    <div class="metric-value" id="berMetric">0.0047</div>
-                    <div class="metric-label">Bit Error Rate</div>
-                    <div class="metric-trend trend-down">↓ 31% improvement</div>
-                </div>
-                <div class="metric-card" onclick="showMetricDetails('snr')">
-                    <div class="metric-value" id="snrMetric">12.4</div>
-                    <div class="metric-label">SNR (dB)</div>
-                    <div class="metric-trend trend-up">↑ Signal Quality</div>
-                </div>
-                <div class="metric-card" onclick="showMetricDetails('throughput')">
-                    <div class="metric-value" id="throughputMetric">2.1</div>
-                    <div class="metric-label">Mbps Throughput</div>
-                    <div class="metric-trend trend-up">↑ Processing Rate</div>
-                </div>
-                <div class="metric-card" onclick="showMetricDetails('latency')">
-                    <div class="metric-value" id="latencyMetric">0.8</div>
-                    <div class="metric-label">Latency (ms)</div>
-                    <div class="metric-trend trend-down">↓ Low Delay</div>
-                </div>
-                <div class="metric-card" onclick="showMetricDetails('efficiency')">
-                    <div class="metric-value" id="efficiencyMetric">94.2</div>
-                    <div class="metric-label">AI Efficiency (%)</div>
-                    <div class="metric-trend trend-up">↑ Performance</div>
-                </div>
-                <div class="metric-card" onclick="showMetricDetails('corrections')">
-                    <div class="metric-value" id="correctionsMetric">1,247</div>
-                    <div class="metric-label">Errors Corrected</div>
-                    <div class="metric-trend trend-up">↑ Active Correction</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Dashboard Grid -->
-        <div class="dashboard-grid">
-            <!-- Algorithm Comparison -->
-            <div class="algorithm-comparison">
-                <div class="comparison-header">
-                    <h3 class="comparison-title">Algorithm Performance</h3>
+        <!-- Threat Assessment Grid -->
+        <div class="threat-assessment">
+            <!-- Real-time Attack Simulation -->
+            <div class="attack-simulation">
+                <div class="simulation-header">
+                    <h3 class="simulation-title">
+                        🎯 LIVE ATTACK SIMULATION
+                    </h3>
                     <div class="live-indicator">
                         <div class="live-dot"></div>
-                        <span>REAL-TIME</span>
+                        <span>ACTIVE JAMMING</span>
                     </div>
                 </div>
                 
-                <div class="algorithm-cards">
-                    <div class="algorithm-card" onclick="selectAlgorithm('classical')">
-                        <div class="algorithm-header">
-                            <div class="algorithm-name">Classical FEC</div>
-                            <div class="algorithm-status">ACTIVE</div>
-                        </div>
-                        <div class="algorithm-metrics">
-                            <div class="algorithm-metric">
-                                <span class="metric-name">BER Performance:</span>
-                                <span class="metric-val" id="classicalBER">0.0281</span>
-                            </div>
-                            <div class="algorithm-metric">
-                                <span class="metric-name">Processing Time:</span>
-                                <span class="metric-val" id="classicalTime">1.2ms</span>
-                            </div>
-                            <div class="algorithm-metric">
-                                <span class="metric-name">Overhead:</span>
-                                <span class="metric-val">75%</span>
-                            </div>
-                            <div class="algorithm-metric">
-                                <span class="metric-name">Method:</span>
-                                <span class="metric-val">Hamming(7,4)</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="algorithm-card" onclick="selectAlgorithm('ai')">
-                        <div class="algorithm-header">
-                            <div class="algorithm-name">AI Denoising</div>
-                            <div class="algorithm-status">ACTIVE</div>
-                        </div>
-                        <div class="algorithm-metrics">
-                            <div class="algorithm-metric">
-                                <span class="metric-name">BER Performance:</span>
-                                <span class="metric-val" id="aiBER">0.0194</span>
-                            </div>
-                            <div class="algorithm-metric">
-                                <span class="metric-name">Processing Time:</span>
-                                <span class="metric-val" id="aiTime">2.3ms</span>
-                            </div>
-                            <div class="algorithm-metric">
-                                <span class="metric-name">Overhead:</span>
-                                <span class="metric-val">0%</span>
-                            </div>
-                            <div class="algorithm-metric">
-                                <span class="metric-name">Method:</span>
-                                <span class="metric-val">Neural Network</span>
-                            </div>
-                        </div>
+                <div class="attack-canvas">
+                    <canvas id="attackVisualization"></canvas>
+                </div>
+                
+                <div class="simulation-controls">
+                    <div class="control-buttons">
+                        <button class="control-btn danger" onclick="simulateAttack('burst')">BURST JAMMING</button>
+                        <button class="control-btn danger" onclick="simulateAttack('sweep')">SWEEP JAMMING</button>
+                        <button class="control-btn danger" onclick="simulateAttack('spoofing')">GPS SPOOFING</button>
+                        <button class="control-btn" onclick="activateDefense()">ACTIVATE DEFENSE</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Real-time Visualization -->
-            <div class="visualization-section">
-                <div class="visualization-header">
-                    <h3 class="visualization-title">Signal Analysis</h3>
+            <!-- Defense Matrix -->
+            <div class="defense-matrix">
+                <div class="matrix-header">
+                    <h3 class="matrix-title">
+                        🛡️ DEFENSE MATRIX
+                    </h3>
                     <div class="live-indicator">
                         <div class="live-dot"></div>
-                        <span>LIVE SIGNAL</span>
+                        <span>ONLINE</span>
                     </div>
                 </div>
                 
-                <div class="signal-canvas">
-                    <canvas id="signalChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Interactive Controls -->
-        <div class="interactive-controls">
-            <div class="controls-header">
-                <h3 class="controls-title">System Configuration</h3>
-            </div>
-            
-            <div class="controls-grid">
-                <div class="control-group">
-                    <div class="control-label">Signal-to-Noise Ratio</div>
-                    <input type="range" min="-5" max="20" value="5" class="slider" id="snrSlider">
-                    <div class="control-value"><span id="snrValue">5</span> dB</div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="applyOptimalSNR()">Optimize</button>
-                        <button class="control-btn secondary" onclick="resetSNR()">Reset</button>
+                <div class="defense-layers">
+                    <div class="defense-layer" onclick="toggleDefenseLayer('quantum')">
+                        <div class="layer-info">
+                            <span class="layer-name">Quantum Error Correction</span>
+                            <span class="layer-status quantum">QUANTUM</span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">Noise Type</div>
-                    <select class="slider" id="noiseTypeSelect" onchange="updateNoiseType()">
-                        <option value="awgn">AWGN</option>
-                        <option value="burst">Burst Noise</option>
-                        <option value="narrowband">Narrowband Interference</option>
-                    </select>
-                    <div class="control-value">Channel Condition</div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="simulateWorstCase()">Worst Case</button>
-                        <button class="control-btn secondary" onclick="simulateBestCase()">Best Case</button>
+                    <div class="defense-layer" onclick="toggleDefenseLayer('ai')">
+                        <div class="layer-info">
+                            <span class="layer-name">AI Signal Denoising</span>
+                            <span class="layer-status adaptive">ADAPTIVE</span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">AI Learning Rate</div>
-                    <input type="range" min="0.001" max="0.1" value="0.01" step="0.001" class="slider" id="learningRateSlider">
-                    <div class="control-value"><span id="learningRateValue">0.01</span></div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="retrainModel()">Retrain</button>
-                        <button class="control-btn secondary" onclick="saveModel()">Save Model</button>
+                    <div class="defense-layer" onclick="toggleDefenseLayer('frequency')">
+                        <div class="layer-info">
+                            <span class="layer-name">Frequency Hopping</span>
+                            <span class="layer-status active">ACTIVE</span>
+                        </div>
                     </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">System Load</div>
-                    <input type="range" min="10" max="100" value="60" class="slider" id="loadSlider">
-                    <div class="control-value"><span id="loadValue">60</span>%</div>
-                    <div class="control-buttons">
-                        <button class="control-btn" onclick="runBenchmark()">Benchmark</button>
-                        <button class="control-btn secondary" onclick="exportResults()">Export</button>
+                    <div class="defense-layer" onclick="toggleDefenseLayer('spread')">
+                        <div class="layer-info">
+                            <span class="layer-name">Spread Spectrum</span>
+                            <span class="layer-status active">ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="defense-layer" onclick="toggleDefenseLayer('crypto')">
+                        <div class="layer-info">
+                            <span class="layer-name">Cryptographic Protection</span>
+                            <span class="layer-status active">ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="defense-layer" onclick="toggleDefenseLayer('beam')">
+                        <div class="layer-info">
+                            <span class="layer-name">Adaptive Beam Forming</span>
+                            <span class="layer-status adaptive">ADAPTIVE</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Activity Feed -->
-        <div class="dashboard-grid">
+        <!-- Signal Intelligence Dashboard -->
+        <div class="sigint-dashboard">
+            <!-- Spectrum Analyzer -->
+            <div class="spectrum-analyzer">
+                <div class="analyzer-header">
+                    <h3 class="analyzer-title">📡 SPECTRUM ANALYZER</h3>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>SCANNING</span>
+                    </div>
+                </div>
+                
+                <div class="spectrum-canvas">
+                    <canvas id="spectrumChart"></canvas>
+                </div>
+                
+                <div class="control-buttons">
+                    <button class="control-btn" onclick="scanSpectrum()">FULL SCAN</button>
+                    <button class="control-btn secondary" onclick="targetFreq()">TARGET</button>
+                </div>
+            </div>
+
+            <!-- Threat Detection -->
+            <div class="threat-detection">
+                <div class="detection-header">
+                    <h3 class="detection-title">⚠️ THREAT DETECTION</h3>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>MONITORING</span>
+                    </div>
+                </div>
+                
+                <div class="threat-list" id="threatList">
+                    <!-- Threats populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- AI Countermeasures -->
+            <div class="ai-countermeasures">
+                <div class="countermeasures-header">
+                    <h3 class="countermeasures-title">🧠 AI COUNTERMEASURES</h3>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>LEARNING</span>
+                    </div>
+                </div>
+                
+                <div class="countermeasure-list" id="countermeasureList">
+                    <!-- Countermeasures populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Control Systems -->
+        <div class="control-systems">
+            <!-- Electronic Warfare Suite -->
+            <div class="ew-suite">
+                <div class="ew-header">
+                    <h3 class="ew-title">⚡ ELECTRONIC WARFARE SUITE</h3>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>OPERATIONAL</span>
+                    </div>
+                </div>
+                
+                <div class="ew-controls">
+                    <div class="ew-control">
+                        <div class="control-label">Jamming Power</div>
+                        <div class="control-display" id="jammingPower">85%</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" onclick="adjustJamming(5)">INCREASE</button>
+                            <button class="control-btn secondary" onclick="adjustJamming(-5)">DECREASE</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ew-control">
+                        <div class="control-label">Frequency Hop Rate</div>
+                        <div class="control-display" id="hopRate">1000/s</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" onclick="adjustHopRate(100)">FASTER</button>
+                            <button class="control-btn secondary" onclick="adjustHopRate(-100)">SLOWER</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ew-control">
+                        <div class="control-label">AI Learning Rate</div>
+                        <div class="control-display" id="aiLearning">0.003</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" onclick="adjustLearning(0.001)">ADAPT</button>
+                            <button class="control-btn secondary" onclick="resetLearning()">RESET</button>
+                        </div>
+                    </div>
+                    
+                    <div class="ew-control">
+                        <div class="control-label">Quantum Entanglement</div>
+                        <div class="control-display" id="quantumSync">99.7%</div>
+                        <div class="control-buttons">
+                            <button class="control-btn" onclick="syncQuantum()">SYNC</button>
+                            <button class="control-btn danger" onclick="breakQuantum()">BREAK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission Status -->
+            <div class="mission-status">
+                <div class="mission-header">
+                    <h3 class="mission-title">🎯 MISSION STATUS</h3>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>ACTIVE</span>
+                    </div>
+                </div>
+                
+                <div class="mission-metrics">
+                    <div class="mission-metric">
+                        <div class="metric-header">
+                            <span class="metric-name">Signal Integrity</span>
+                            <span class="metric-value" id="signalIntegrity">94.7%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 94.7%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-metric">
+                        <div class="metric-header">
+                            <span class="metric-name">Defense Effectiveness</span>
+                            <span class="metric-value" id="defenseEffectiveness">87.3%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 87.3%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-metric">
+                        <div class="metric-header">
+                            <span class="metric-name">Threat Mitigation</span>
+                            <span class="metric-value" id="threatMitigation">92.1%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 92.1%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-metric">
+                        <div class="metric-header">
+                            <span class="metric-name">AI Performance</span>
+                            <span class="metric-value" id="aiPerformance">96.8%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 96.8%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mission-metric">
+                        <div class="metric-header">
+                            <span class="metric-name">System Readiness</span>
+                            <span class="metric-value" id="systemReadiness">99.2%</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 99.2%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Feeds Enhanced -->
+        <div class="activity-feeds">
             <div class="activity-feed">
                 <div class="feed-header">
-                    <h3 class="feed-title">System Activity Feed</h3>
+                    <h3 class="feed-title">🚨 THREAT INTELLIGENCE</h3>
                     <div class="live-indicator">
                         <div class="live-dot"></div>
                         <span>LIVE</span>
                     </div>
                 </div>
-                <div class="feed-content" id="activityFeed">
-                    <!-- Activity items will be populated by JavaScript -->
+                <div class="feed-content" id="threatFeed">
+                    <!-- Threat feed items will be populated by JavaScript -->
                 </div>
             </div>
 
             <div class="activity-feed">
                 <div class="feed-header">
-                    <h3 class="feed-title">Performance Monitor</h3>
+                    <h3 class="feed-title">🛡️ DEFENSE ACTIONS</h3>
                     <div class="live-indicator">
                         <div class="live-dot"></div>
-                        <span>ANALYSIS</span>
+                        <span>ACTIVE</span>
                     </div>
                 </div>
-                <div class="feed-content" id="performanceFeed">
-                    <!-- Performance items will be populated by JavaScript -->
+                <div class="feed-content" id="defenseFeed">
+                    <!-- Defense feed items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="activity-feed">
+                <div class="feed-header">
+                    <h3 class="feed-title">🧠 AI OPERATIONS</h3>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>LEARNING</span>
+                    </div>
+                </div>
+                <div class="feed-content" id="aiFeed">
+                    <!-- AI feed items will be populated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -1144,41 +1493,33 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-brand-name">AI Signal Correction</div>
-            <div class="footer-subtitle">Advanced Communication Systems</div>
-            <div class="footer-links">
-                <a href="#" class="footer-link">Documentation</a>
-                <a href="#" class="footer-link">API Reference</a>
-                <a href="#" class="footer-link">Research Papers</a>
-                <a href="#" class="footer-link">GitHub Repository</a>
-                <a href="#" class="footer-link">Support</a>
-            </div>
-            <div class="footer-copyright">
-                © 2025 AI Signal Correction Systems • Advanced Error Correction Technology
-            </div>
+            <div class="footer-classification">CLASSIFIED - TOP SECRET - NOFORN</div>
+            <div class="footer-brand-name">QUANTUM-SHIELD</div>
+            <div class="footer-subtitle">Advanced Signal Defense System • Authorized Personnel Only</div>
         </div>
     </footer>
 
     <script>
-        // Global state
-        let systemState = {
-            snr: 5,
-            noiseType: 'awgn',
-            learningRate: 0.01,
-            systemLoad: 60,
-            classicalActive: true,
-            aiActive: true,
+        // Global Defense System State
+        let defenseState = {
+            threatLevel: 'HIGH',
+            jammingPower: 85,
+            hopRate: 1000,
+            aiLearning: 0.003,
+            quantumSync: 99.7,
+            attackInProgress: false,
+            defenseActive: true,
+            currentAttack: null,
             metrics: {
-                ber: 0.0047,
-                snr: 12.4,
-                throughput: 2.1,
-                latency: 0.8,
-                efficiency: 94.2,
-                corrections: 1247
+                signalIntegrity: 94.7,
+                defenseEffectiveness: 87.3,
+                threatMitigation: 92.1,
+                aiPerformance: 96.8,
+                systemReadiness: 99.2
             }
         };
 
-        // Neural Network Background Animation
+        // Advanced Neural Network Background with Defense Patterns
         function initNeuralBackground() {
             const canvas = document.getElementById('neuralCanvas');
             const ctx = canvas.getContext('2d');
@@ -1187,22 +1528,39 @@
             canvas.height = window.innerHeight;
             
             const nodes = [];
-            const nodeCount = 150;
+            const defenseNodes = [];
+            const nodeCount = 200;
+            const defenseNodeCount = 50;
             
+            // Create regular neural nodes
             for (let i = 0; i < nodeCount; i++) {
                 nodes.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    radius: Math.random() * 2 + 1,
+                    type: 'neural'
+                });
+            }
+            
+            // Create defense nodes
+            for (let i = 0; i < defenseNodeCount; i++) {
+                defenseNodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
                     vx: (Math.random() - 0.5) * 0.5,
                     vy: (Math.random() - 0.5) * 0.5,
-                    radius: Math.random() * 2 + 1
+                    radius: Math.random() * 3 + 2,
+                    type: 'defense',
+                    pulse: Math.random() * Math.PI * 2
                 });
             }
             
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                // Update nodes
+                // Update and draw neural nodes
                 nodes.forEach(node => {
                     node.x += node.vx;
                     node.y += node.vy;
@@ -1211,15 +1569,25 @@
                     if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
                 });
                 
-                // Draw connections
-                ctx.strokeStyle = 'rgba(0, 255, 136, 0.1)';
+                // Update and draw defense nodes
+                defenseNodes.forEach(node => {
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    node.pulse += 0.05;
+                    
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                
+                // Draw connections between neural nodes
+                ctx.strokeStyle = 'rgba(0, 255, 136, 0.08)';
                 ctx.lineWidth = 0.5;
                 
                 nodes.forEach((node1, i) => {
                     nodes.slice(i + 1).forEach(node2 => {
                         const dist = Math.hypot(node1.x - node2.x, node1.y - node2.y);
-                        if (dist < 100) {
-                            ctx.globalAlpha = 1 - dist / 100;
+                        if (dist < 120) {
+                            ctx.globalAlpha = 1 - dist / 120;
                             ctx.beginPath();
                             ctx.moveTo(node1.x, node1.y);
                             ctx.lineTo(node2.x, node2.y);
@@ -1228,16 +1596,46 @@
                     });
                 });
                 
-                // Draw nodes
+                // Draw defense connections
+                ctx.strokeStyle = 'rgba(0, 204, 255, 0.15)';
+                ctx.lineWidth = 1;
+                
+                defenseNodes.forEach((node1, i) => {
+                    defenseNodes.slice(i + 1).forEach(node2 => {
+                        const dist = Math.hypot(node1.x - node2.x, node1.y - node2.y);
+                        if (dist < 150) {
+                            ctx.globalAlpha = 1 - dist / 150;
+                            ctx.beginPath();
+                            ctx.moveTo(node1.x, node1.y);
+                            ctx.lineTo(node2.x, node2.y);
+                            ctx.stroke();
+                        }
+                    });
+                });
+                
+                // Draw neural nodes
                 ctx.globalAlpha = 1;
                 nodes.forEach(node => {
                     const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 2);
-                    gradient.addColorStop(0, 'rgba(0, 255, 136, 0.8)');
+                    gradient.addColorStop(0, 'rgba(0, 255, 136, 0.6)');
                     gradient.addColorStop(1, 'rgba(0, 255, 136, 0)');
                     
                     ctx.fillStyle = gradient;
                     ctx.beginPath();
                     ctx.arc(node.x, node.y, node.radius * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // Draw defense nodes with pulsing effect
+                defenseNodes.forEach(node => {
+                    const pulseRadius = node.radius * (1 + Math.sin(node.pulse) * 0.3);
+                    const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, pulseRadius * 2);
+                    gradient.addColorStop(0, 'rgba(0, 204, 255, 0.8)');
+                    gradient.addColorStop(1, 'rgba(0, 204, 255, 0)');
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, pulseRadius * 2, 0, Math.PI * 2);
                     ctx.fill();
                 });
                 
@@ -1247,33 +1645,34 @@
             animate();
         }
 
-        // Signal Chart Animation
-        function initSignalChart() {
-            const canvas = document.getElementById('signalChart');
+        // Attack Visualization System
+        function initAttackVisualization() {
+            const canvas = document.getElementById('attackVisualization');
             const ctx = canvas.getContext('2d');
             
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
             
+            let attackPatterns = [];
+            let defenseSignals = [];
             let time = 0;
-            const sampleRate = 100;
             
-            function drawSignal() {
+            function drawAttackSimulation() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
                 const centerY = canvas.height / 2;
                 const amplitude = canvas.height * 0.3;
                 
                 // Draw grid
-                ctx.strokeStyle = 'rgba(0, 255, 136, 0.1)';
+                ctx.strokeStyle = 'rgba(255, 23, 68, 0.1)';
                 ctx.lineWidth = 1;
-                for (let i = 0; i < canvas.width; i += 50) {
+                for (let i = 0; i < canvas.width; i += 40) {
                     ctx.beginPath();
                     ctx.moveTo(i, 0);
                     ctx.lineTo(i, canvas.height);
                     ctx.stroke();
                 }
-                for (let i = 0; i < canvas.height; i += 50) {
+                for (let i = 0; i < canvas.height; i += 40) {
                     ctx.beginPath();
                     ctx.moveTo(0, i);
                     ctx.lineTo(canvas.width, i);
@@ -1283,312 +1682,571 @@
                 // Draw clean signal
                 ctx.strokeStyle = '#00ff88';
                 ctx.lineWidth = 2;
+                ctx.globalAlpha = 0.6;
                 ctx.beginPath();
                 for (let x = 0; x < canvas.width; x++) {
-                    const t = (x / canvas.width) * 4 * Math.PI + time;
-                    const y = centerY + Math.sin(t) * amplitude * 0.5;
+                    const t = (x / canvas.width) * 6 * Math.PI + time;
+                    const y = centerY + Math.sin(t) * amplitude * 0.4;
                     if (x === 0) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
                 }
                 ctx.stroke();
                 
-                // Draw noisy signal
-                ctx.strokeStyle = '#ff0044';
-                ctx.lineWidth = 1;
-                ctx.globalAlpha = 0.7;
-                ctx.beginPath();
-                for (let x = 0; x < canvas.width; x++) {
-                    const t = (x / canvas.width) * 4 * Math.PI + time;
-                    const noise = (Math.random() - 0.5) * amplitude * (0.3 - systemState.snr / 100);
-                    const y = centerY + Math.sin(t) * amplitude * 0.5 + noise;
-                    if (x === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
+                // Draw attack signals
+                if (defenseState.attackInProgress) {
+                    ctx.strokeStyle = '#ff1744';
+                    ctx.lineWidth = 3;
+                    ctx.globalAlpha = 0.8;
+                    ctx.beginPath();
+                    for (let x = 0; x < canvas.width; x++) {
+                        const t = (x / canvas.width) * 6 * Math.PI + time;
+                        let attackSignal = 0;
+                        
+                        switch (defenseState.currentAttack) {
+                            case 'burst':
+                                attackSignal = Math.sin(t * 3) * amplitude * 0.8 * (Math.sin(time * 2) > 0 ? 1 : 0);
+                                break;
+                            case 'sweep':
+                                attackSignal = Math.sin(t * (2 + Math.sin(time * 0.5))) * amplitude * 0.6;
+                                break;
+                            case 'spoofing':
+                                attackSignal = Math.sin(t + Math.sin(time * 0.3) * 2) * amplitude * 0.5;
+                                break;
+                        }
+                        
+                        const y = centerY + Math.sin(t) * amplitude * 0.4 + attackSignal;
+                        if (x === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
                 }
-                ctx.stroke();
-                ctx.globalAlpha = 1;
                 
-                // Draw AI corrected signal
-                ctx.strokeStyle = '#00ccff';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                for (let x = 0; x < canvas.width; x++) {
-                    const t = (x / canvas.width) * 4 * Math.PI + time;
-                    const noise = (Math.random() - 0.5) * amplitude * (0.1 - systemState.snr / 200);
-                    const y = centerY + Math.sin(t) * amplitude * 0.5 + noise;
-                    if (x === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
+                // Draw AI-corrected signal
+                if (defenseState.defenseActive) {
+                    ctx.strokeStyle = '#00ccff';
+                    ctx.lineWidth = 2;
+                    ctx.globalAlpha = 1;
+                    ctx.beginPath();
+                    for (let x = 0; x < canvas.width; x++) {
+                        const t = (x / canvas.width) * 6 * Math.PI + time;
+                        const noise = (Math.random() - 0.5) * amplitude * 0.05;
+                        const y = centerY + Math.sin(t) * amplitude * 0.4 + noise;
+                        if (x === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
                 }
-                ctx.stroke();
                 
                 // Draw legend
+                ctx.globalAlpha = 1;
                 ctx.fillStyle = '#00ff88';
                 ctx.fillRect(10, 10, 15, 3);
                 ctx.fillStyle = '#ffffff';
                 ctx.font = '12px monospace';
                 ctx.fillText('Clean Signal', 30, 20);
                 
-                ctx.fillStyle = '#ff0044';
-                ctx.fillRect(10, 30, 15, 3);
-                ctx.fillText('Noisy Signal', 30, 40);
+                if (defenseState.attackInProgress) {
+                    ctx.fillStyle = '#ff1744';
+                    ctx.fillRect(10, 30, 15, 3);
+                    ctx.fillText('Attack Signal', 30, 40);
+                }
                 
-                ctx.fillStyle = '#00ccff';
-                ctx.fillRect(10, 50, 15, 3);
-                ctx.fillText('AI Corrected', 30, 60);
+                if (defenseState.defenseActive) {
+                    ctx.fillStyle = '#00ccff';
+                    ctx.fillRect(10, 50, 15, 3);
+                    ctx.fillText('AI Corrected', 30, 60);
+                }
                 
-                time += 0.05;
-                requestAnimationFrame(drawSignal);
+                time += 0.08;
+                requestAnimationFrame(drawAttackSimulation);
             }
             
-            drawSignal();
+            drawAttackSimulation();
         }
 
-        // Real-time Metrics Update
-        function updateMetrics() {
-            const variance = 0.05; // 5% variance
+        // Spectrum Analyzer Visualization
+        function initSpectrumAnalyzer() {
+            const canvas = document.getElementById('spectrumChart');
+            const ctx = canvas.getContext('2d');
             
-            Object.keys(systemState.metrics).forEach(key => {
-                const element = document.getElementById(key + 'Metric');
-                if (element) {
-                    let value = systemState.metrics[key];
-                    const change = (Math.random() - 0.5) * variance * value;
-                    value += change;
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            let spectrumData = [];
+            const freqBands = 50;
+            
+            // Initialize spectrum data
+            for (let i = 0; i < freqBands; i++) {
+                spectrumData.push({
+                    frequency: i * 2, // MHz
+                    power: Math.random() * 60 - 80, // dBm
+                    isHostile: Math.random() < 0.1
+                });
+            }
+            
+            function drawSpectrum() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw frequency grid
+                ctx.strokeStyle = 'rgba(0, 255, 136, 0.1)';
+                ctx.lineWidth = 1;
+                for (let i = 0; i <= 10; i++) {
+                    const x = (i / 10) * canvas.width;
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+                
+                // Draw power grid
+                for (let i = 0; i <= 8; i++) {
+                    const y = (i / 8) * canvas.height;
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+                
+                // Draw spectrum bars
+                const barWidth = canvas.width / freqBands;
+                spectrumData.forEach((band, index) => {
+                    const x = index * barWidth;
+                    const normalizedPower = (band.power + 80) / 60; // Normalize -80 to -20 dBm
+                    const barHeight = Math.max(0, normalizedPower * canvas.height);
+                    const y = canvas.height - barHeight;
                     
-                    // Format based on metric type
-                    if (key === 'ber') {
-                        element.textContent = value.toFixed(4);
-                    } else if (key === 'snr' || key === 'throughput' || key === 'latency') {
-                        element.textContent = value.toFixed(1);
-                    } else if (key === 'efficiency') {
-                        element.textContent = value.toFixed(1);
+                    // Color based on hostile detection
+                    if (band.isHostile) {
+                        ctx.fillStyle = '#ff1744';
+                    } else if (band.power > -40) {
+                        ctx.fillStyle = '#ffaa00';
                     } else {
-                        element.textContent = Math.round(value).toLocaleString();
+                        ctx.fillStyle = '#00ff88';
                     }
                     
-                    systemState.metrics[key] = value;
-                }
-            });
-            
-            // Update algorithm metrics
-            const classicalBER = document.getElementById('classicalBER');
-            const aiBER = document.getElementById('aiBER');
-            const classicalTime = document.getElementById('classicalTime');
-            const aiTime = document.getElementById('aiTime');
-            
-            if (classicalBER) {
-                const berValue = 0.0281 + (Math.random() - 0.5) * 0.005;
-                classicalBER.textContent = berValue.toFixed(4);
+                    ctx.fillRect(x, y, barWidth - 1, barHeight);
+                    
+                    // Add some dynamic variance
+                    band.power += (Math.random() - 0.5) * 2;
+                    band.power = Math.max(-80, Math.min(-20, band.power));
+                    
+                    // Randomly mark bands as hostile
+                    if (Math.random() < 0.002) {
+                        band.isHostile = !band.isHostile;
+                    }
+                });
+                
+                // Draw frequency labels
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '10px monospace';
+                ctx.fillText('0 MHz', 5, canvas.height - 5);
+                ctx.fillText('100 MHz', canvas.width - 50, canvas.height - 5);
+                
+                requestAnimationFrame(drawSpectrum);
             }
             
-            if (aiBER) {
-                const berValue = 0.0194 + (Math.random() - 0.5) * 0.003;
-                aiBER.textContent = berValue.toFixed(4);
-            }
-            
-            if (classicalTime) {
-                const timeValue = 1.2 + (Math.random() - 0.5) * 0.2;
-                classicalTime.textContent = timeValue.toFixed(1) + 'ms';
-            }
-            
-            if (aiTime) {
-                const timeValue = 2.3 + (Math.random() - 0.5) * 0.3;
-                aiTime.textContent = timeValue.toFixed(1) + 'ms';
-            }
+            drawSpectrum();
         }
 
-        // Activity Feed Management
-        function initActivityFeed() {
-            const activityMessages = [
-                'AI denoising algorithm optimized for current channel conditions',
-                'Classical FEC performing error correction on data block 1247',
-                'SNR improvement detected: 12.4 dB average',
-                'Neural network weights updated for burst noise conditions',
-                'Error correction efficiency increased by 2.3%',
-                'Signal quality analysis completed successfully',
-                'Automatic threshold adjustment for optimal performance',
-                'Real-time adaptation to narrowband interference',
-                'Training data collection: 10,000 samples processed',
-                'Performance benchmarking completed with 94.2% efficiency'
+        // Threat Detection System
+        function initThreatDetection() {
+            const threats = [
+                {
+                    type: 'RF Jamming',
+                    severity: 'high',
+                    description: 'Broadband noise jamming detected on primary frequency',
+                    frequency: '2.4 GHz',
+                    power: '-45 dBm'
+                },
+                {
+                    type: 'GPS Spoofing',
+                    severity: 'high',
+                    description: 'False GPS signals detected from hostile transmitter',
+                    frequency: '1.57 GHz',
+                    power: '-38 dBm'
+                },
+                {
+                    type: 'Sweep Jamming',
+                    severity: 'medium',
+                    description: 'Frequency sweep jamming across communication band',
+                    frequency: '800-900 MHz',
+                    power: '-52 dBm'
+                },
+                {
+                    type: 'Signal Intercept',
+                    severity: 'medium',
+                    description: 'Potential SIGINT collection detected',
+                    frequency: 'Multiple',
+                    power: 'Variable'
+                },
+                {
+                    type: 'Burst Interference',
+                    severity: 'low',
+                    description: 'Intermittent high-power interference pulses',
+                    frequency: '5.8 GHz',
+                    power: '-41 dBm'
+                }
             ];
             
-            const performanceMessages = [
-                'BER performance: 31% improvement over classical methods',
-                'Throughput optimization: 2.1 Mbps sustained rate',
-                'Latency analysis: 0.8ms average processing delay',
-                'AI model convergence achieved in 47 epochs',
-                'Memory utilization: 23% of available neural processing',
-                'Power efficiency: 12% reduction in computational load',
-                'Error detection rate: 99.7% accuracy maintained',
-                'Channel adaptation: 15 parameter updates applied',
-                'Signal reconstruction quality: 96.8% fidelity',
-                'System stability: 99.9% uptime over 24 hours'
+            function updateThreatList() {
+                const threatList = document.getElementById('threatList');
+                threatList.innerHTML = '';
+                
+                threats.forEach((threat, index) => {
+                    const threatItem = document.createElement('div');
+                    threatItem.className = 'threat-item';
+                    threatItem.onclick = () => analyzeThreat(index);
+                    
+                    threatItem.innerHTML = `
+                        <div class="threat-info">
+                            <span class="threat-type">${threat.type}</span>
+                            <span class="threat-severity severity-${threat.severity}">${threat.severity.toUpperCase()}</span>
+                        </div>
+                        <div class="threat-description">${threat.description}</div>
+                        <div class="threat-details" style="font-size: 11px; color: #8892b0; margin-top: 5px;">
+                            Freq: ${threat.frequency} | Power: ${threat.power}
+                        </div>
+                    `;
+                    
+                    threatList.appendChild(threatItem);
+                });
+            }
+            
+            updateThreatList();
+            
+            // Simulate new threats periodically
+            setInterval(() => {
+                if (Math.random() < 0.1) {
+                    const newThreat = {
+                        type: 'New Threat ' + Math.floor(Math.random() * 1000),
+                        severity: ['low', 'medium', 'high'][Math.floor(Math.random() * 3)],
+                        description: 'Newly detected hostile signal activity',
+                        frequency: (Math.random() * 5 + 1).toFixed(1) + ' GHz',
+                        power: (Math.random() * 30 - 60).toFixed(0) + ' dBm'
+                    };
+                    threats.unshift(newThreat);
+                    if (threats.length > 8) threats.pop();
+                    updateThreatList();
+                }
+            }, 15000);
+        }
+
+        // AI Countermeasures System
+        function initCountermeasures() {
+            const countermeasures = [
+                {
+                    name: 'Adaptive Nulling',
+                    status: 'ACTIVE',
+                    description: 'AI-driven antenna nulling to suppress hostile signals',
+                    effectiveness: '94%'
+                },
+                {
+                    name: 'Frequency Agility',
+                    status: 'ACTIVE',
+                    description: 'Real-time frequency hopping based on threat analysis',
+                    effectiveness: '87%'
+                },
+                {
+                    name: 'Signal Masking',
+                    status: 'STANDBY',
+                    description: 'Spread spectrum masking with AI optimization',
+                    effectiveness: '91%'
+                },
+                {
+                    name: 'Quantum Encryption',
+                    status: 'ACTIVE',
+                    description: 'Quantum-resistant encryption protocols',
+                    effectiveness: '99%'
+                },
+                {
+                    name: 'Predictive Defense',
+                    status: 'LEARNING',
+                    description: 'Machine learning threat prediction system',
+                    effectiveness: '83%'
+                }
             ];
             
-            function addActivityItem(message, type = '') {
-                const feed = document.getElementById('activityFeed');
+            function updateCountermeasureList() {
+                const countermeasureList = document.getElementById('countermeasureList');
+                countermeasureList.innerHTML = '';
+                
+                countermeasures.forEach((countermeasure, index) => {
+                    const countermeasureItem = document.createElement('div');
+                    countermeasureItem.className = 'countermeasure-item';
+                    countermeasureItem.onclick = () => activateCountermeasure(index);
+                    
+                    countermeasureItem.innerHTML = `
+                        <div class="countermeasure-info">
+                            <span class="countermeasure-name">${countermeasure.name}</span>
+                            <span class="countermeasure-status">${countermeasure.status}</span>
+                        </div>
+                        <div class="countermeasure-description">${countermeasure.description}</div>
+                        <div style="font-size: 11px; color: #7c3aed; margin-top: 5px;">
+                            Effectiveness: ${countermeasure.effectiveness}
+                        </div>
+                    `;
+                    
+                    countermeasureList.appendChild(countermeasureItem);
+                });
+            }
+            
+            updateCountermeasureList();
+        }
+
+        // Activity Feed Management - Enhanced for Military Operations
+        function initActivityFeeds() {
+            const threatMessages = [
+                'SIGINT: Multiple hostile emitters detected in AOR',
+                'EW WARNING: GPS jamming attempt blocked by quantum filters',
+                'COMINT: Encrypted hostile communications intercepted',
+                'THREAT: Sweep jamming detected across tactical frequencies',
+                'ALERT: Potential ELINT collection attempt neutralized',
+                'WARNING: Burst interference on secure communication channels',
+                'THREAT: Coordinated jamming attack pattern identified',
+                'SIGINT: New frequency hopping pattern detected and analyzed',
+                'EW: Adaptive countermeasures successfully deployed',
+                'ALERT: Hostile signal direction finding in progress'
+            ];
+            
+            const defenseMessages = [
+                'DEFENSE: Quantum error correction algorithms optimized',
+                'ACTIVE: AI-driven frequency agility protocols engaged',
+                'COUNTERMEASURE: Adaptive beam nulling suppressing hostiles',
+                'DEFENSE: Spread spectrum anti-jam protection active',
+                'ACTIVE: Machine learning threat prediction updated',
+                'COUNTERMEASURE: Signal masking protocols reinforced',
+                'DEFENSE: Cryptographic key rotation completed',
+                'ACTIVE: Autonomous defense systems fully operational',
+                'COUNTERMEASURE: Electronic warfare suite reconfigured',
+                'DEFENSE: Multi-layer protection algorithms synchronized'
+            ];
+            
+            const aiMessages = [
+                'AI: Neural network weights updated for current threat environment',
+                'ML: Threat pattern recognition accuracy improved to 97.3%',
+                'AI: Adaptive algorithm parameters optimized for EW conditions',
+                'QUANTUM: Entanglement-based security protocols synchronized',
+                'AI: Deep learning model trained on 2.4M hostile signal samples',
+                'ML: Predictive defense algorithms achieved 94% accuracy',
+                'AI: Reinforcement learning optimized countermeasure selection',
+                'QUANTUM: Error correction thresholds dynamically adjusted',
+                'AI: Adversarial training completed against known jammers',
+                'ML: Anomaly detection sensitivity calibrated for mission profile'
+            ];
+            
+            function addFeedMessage(feedId, messages, type = '') {
+                const feed = document.getElementById(feedId);
+                if (!feed) return;
+                
+                const message = messages[Math.floor(Math.random() * messages.length)];
                 const item = document.createElement('div');
                 item.className = `feed-item ${type}`;
                 
                 const time = new Date().toLocaleTimeString();
+                const classification = ['UNCLASS', 'CONFIDENTIAL', 'SECRET', 'TOP SECRET'][Math.floor(Math.random() * 4)];
+                
                 item.innerHTML = `
-                    <div class="feed-time">${time}</div>
+                    <div class="feed-time">${time} • ${classification}</div>
                     <div class="feed-message">${message}</div>
+                    <div class="feed-agent">QUANTUM-SHIELD AI</div>
                 `;
                 
                 feed.insertBefore(item, feed.firstChild);
                 
-                // Keep only last 10 items
-                while (feed.children.length > 10) {
+                // Keep only last 12 items
+                while (feed.children.length > 12) {
                     feed.removeChild(feed.lastChild);
                 }
             }
             
-            function addPerformanceItem(message, type = '') {
-                const feed = document.getElementById('performanceFeed');
-                const item = document.createElement('div');
-                item.className = `feed-item ${type}`;
-                
-                const time = new Date().toLocaleTimeString();
-                item.innerHTML = `
-                    <div class="feed-time">${time}</div>
-                    <div class="feed-message">${message}</div>
-                `;
-                
-                feed.insertBefore(item, feed.firstChild);
-                
-                // Keep only last 10 items
-                while (feed.children.length > 10) {
-                    feed.removeChild(feed.lastChild);
-                }
-            }
-            
-            // Add initial messages
-            for (let i = 0; i < 5; i++) {
+            // Initialize with some messages
+            for (let i = 0; i < 6; i++) {
                 setTimeout(() => {
-                    const message = activityMessages[Math.floor(Math.random() * activityMessages.length)];
-                    addActivityItem(message);
-                }, i * 1000);
-                
-                setTimeout(() => {
-                    const message = performanceMessages[Math.floor(Math.random() * performanceMessages.length)];
-                    addPerformanceItem(message);
-                }, i * 1200);
+                    addFeedMessage('threatFeed', threatMessages, i % 3 === 0 ? 'hostile' : '');
+                    addFeedMessage('defenseFeed', defenseMessages);
+                    addFeedMessage('aiFeed', aiMessages, 'quantum');
+                }, i * 800);
             }
             
             // Continue adding messages periodically
             setInterval(() => {
-                const message = activityMessages[Math.floor(Math.random() * activityMessages.length)];
-                const type = Math.random() < 0.1 ? 'warning' : '';
-                addActivityItem(message, type);
-            }, 8000);
-            
-            setInterval(() => {
-                const message = performanceMessages[Math.floor(Math.random() * performanceMessages.length)];
-                addPerformanceItem(message);
-            }, 10000);
+                const feedType = Math.random();
+                if (feedType < 0.4) {
+                    addFeedMessage('threatFeed', threatMessages, Math.random() < 0.3 ? 'hostile' : '');
+                } else if (feedType < 0.7) {
+                    addFeedMessage('defenseFeed', defenseMessages);
+                } else {
+                    addFeedMessage('aiFeed', aiMessages, 'quantum');
+                }
+            }, 3000);
         }
 
-        // Control Functions
-        function updateSliderValues() {
-            const snrSlider = document.getElementById('snrSlider');
-            const snrValue = document.getElementById('snrValue');
-            const learningRateSlider = document.getElementById('learningRateSlider');
-            const learningRateValue = document.getElementById('learningRateValue');
-            const loadSlider = document.getElementById('loadSlider');
-            const loadValue = document.getElementById('loadValue');
+        // Real-time Metrics Update System
+        function updateMetrics() {
+            const variance = 0.03; // 3% variance
             
-            snrSlider.addEventListener('input', (e) => {
-                systemState.snr = parseInt(e.target.value);
-                snrValue.textContent = systemState.snr;
-            });
-            
-            learningRateSlider.addEventListener('input', (e) => {
-                systemState.learningRate = parseFloat(e.target.value);
-                learningRateValue.textContent = systemState.learningRate.toFixed(3);
-            });
-            
-            loadSlider.addEventListener('input', (e) => {
-                systemState.systemLoad = parseInt(e.target.value);
-                loadValue.textContent = systemState.systemLoad;
+            Object.keys(defenseState.metrics).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    let value = defenseState.metrics[key];
+                    
+                    // Apply threat-based modifications
+                    if (defenseState.attackInProgress) {
+                        if (key === 'signalIntegrity' || key === 'defenseEffectiveness') {
+                            value -= Math.random() * 5; // Reduce during attacks
+                        }
+                    } else {
+                        // Slowly recover when no attack
+                        value += Math.random() * 2;
+                    }
+                    
+                    const change = (Math.random() - 0.5) * variance * value;
+                    value = Math.max(70, Math.min(99.9, value + change));
+                    
+                    element.textContent = value.toFixed(1) + '%';
+                    
+                    // Update progress bar
+                    const bar = element.parentElement?.nextElementSibling?.querySelector('.metric-fill');
+                    if (bar) {
+                        bar.style.width = value + '%';
+                    }
+                    
+                    defenseState.metrics[key] = value;
+                }
             });
         }
 
-        // Interactive Functions
-        function toggleAlgorithm(type) {
-            console.log(`Toggling ${type} algorithm`);
-            if (type === 'classical') {
-                systemState.classicalActive = !systemState.classicalActive;
-            } else {
-                systemState.aiActive = !systemState.aiActive;
+        // Attack Simulation Functions
+        function simulateAttack(attackType) {
+            defenseState.attackInProgress = true;
+            defenseState.currentAttack = attackType;
+            
+            console.log(`🚨 SIMULATING ${attackType.toUpperCase()} ATTACK`);
+            
+            // Add attack notification to threat feed
+            const threatFeed = document.getElementById('threatFeed');
+            if (threatFeed) {
+                const item = document.createElement('div');
+                item.className = 'feed-item hostile';
+                item.innerHTML = `
+                    <div class="feed-time">${new Date().toLocaleTimeString()} • SECRET</div>
+                    <div class="feed-message">🚨 ACTIVE ATTACK: ${attackType.toUpperCase()} detected and being countered</div>
+                    <div class="feed-agent">THREAT DETECTION SYSTEM</div>
+                `;
+                threatFeed.insertBefore(item, threatFeed.firstChild);
+            }
+            
+            // Simulate attack duration
+            setTimeout(() => {
+                defenseState.attackInProgress = false;
+                defenseState.currentAttack = null;
+                
+                const defenseFeed = document.getElementById('defenseFeed');
+                if (defenseFeed) {
+                    const item = document.createElement('div');
+                    item.className = 'feed-item';
+                    item.innerHTML = `
+                        <div class="feed-time">${new Date().toLocaleTimeString()} • SECRET</div>
+                        <div class="feed-message">✅ ATTACK NEUTRALIZED: ${attackType.toUpperCase()} successfully countered by AI systems</div>
+                        <div class="feed-agent">DEFENSE COORDINATION CENTER</div>
+                    `;
+                    defenseFeed.insertBefore(item, defenseFeed.firstChild);
+                }
+            }, 10000 + Math.random() * 15000);
+        }
+
+        function activateDefense() {
+            defenseState.defenseActive = true;
+            console.log('🛡️ ACTIVATING ENHANCED DEFENSE PROTOCOLS');
+            
+            const defenseFeed = document.getElementById('defenseFeed');
+            if (defenseFeed) {
+                const item = document.createElement('div');
+                item.className = 'feed-item';
+                item.innerHTML = `
+                    <div class="feed-time">${new Date().toLocaleTimeString()} • SECRET</div>
+                    <div class="feed-message">🛡️ ENHANCED DEFENSE: All countermeasure systems synchronized and optimized</div>
+                    <div class="feed-agent">QUANTUM-SHIELD COMMAND</div>
+                `;
+                defenseFeed.insertBefore(item, defenseFeed.firstChild);
             }
         }
 
-        function selectAlgorithm(type) {
-            console.log(`Selected ${type} algorithm for detailed analysis`);
+        // Control Functions
+        function adjustJamming(delta) {
+            defenseState.jammingPower = Math.max(0, Math.min(100, defenseState.jammingPower + delta));
+            document.getElementById('jammingPower').textContent = defenseState.jammingPower + '%';
         }
 
-        function showMetricDetails(metric) {
-            console.log(`Showing details for ${metric} metric`);
+        function adjustHopRate(delta) {
+            defenseState.hopRate = Math.max(100, Math.min(5000, defenseState.hopRate + delta));
+            document.getElementById('hopRate').textContent = defenseState.hopRate + '/s';
         }
 
-        function updateNoiseType() {
-            const select = document.getElementById('noiseTypeSelect');
-            systemState.noiseType = select.value;
-            console.log(`Noise type changed to: ${systemState.noiseType}`);
+        function adjustLearning(delta) {
+            defenseState.aiLearning = Math.max(0.001, Math.min(0.1, defenseState.aiLearning + delta));
+            document.getElementById('aiLearning').textContent = defenseState.aiLearning.toFixed(3);
         }
 
-        function applyOptimalSNR() {
-            const snrSlider = document.getElementById('snrSlider');
-            const snrValue = document.getElementById('snrValue');
-            snrSlider.value = 15;
-            systemState.snr = 15;
-            snrValue.textContent = '15';
-            console.log('Applied optimal SNR settings');
+        function resetLearning() {
+            defenseState.aiLearning = 0.003;
+            document.getElementById('aiLearning').textContent = '0.003';
         }
 
-        function resetSNR() {
-            const snrSlider = document.getElementById('snrSlider');
-            const snrValue = document.getElementById('snrValue');
-            snrSlider.value = 5;
-            systemState.snr = 5;
-            snrValue.textContent = '5';
-            console.log('Reset SNR to default');
+        function syncQuantum() {
+            defenseState.quantumSync = 99.7 + Math.random() * 0.29;
+            document.getElementById('quantumSync').textContent = defenseState.quantumSync.toFixed(1) + '%';
         }
 
-        function simulateWorstCase() {
-            console.log('Simulating worst-case channel conditions');
+        function breakQuantum() {
+            defenseState.quantumSync = Math.random() * 50 + 25;
+            document.getElementById('quantumSync').textContent = defenseState.quantumSync.toFixed(1) + '%';
         }
 
-        function simulateBestCase() {
-            console.log('Simulating best-case channel conditions');
+        // Additional Control Functions
+        function toggleDefenseLayer(layer) {
+            console.log(`🔧 TOGGLING ${layer.toUpperCase()} DEFENSE LAYER`);
         }
 
-        function retrainModel() {
-            console.log('Retraining AI model with current parameters');
+        function analyzeThreat(index) {
+            console.log(`🔍 ANALYZING THREAT #${index}`);
         }
 
-        function saveModel() {
-            console.log('Saving current AI model configuration');
+        function activateCountermeasure(index) {
+            console.log(`⚡ ACTIVATING COUNTERMEASURE #${index}`);
         }
 
-        function runBenchmark() {
-            console.log('Running performance benchmark');
+        function scanSpectrum() {
+            console.log('📡 INITIATING FULL SPECTRUM SCAN');
         }
 
-        function exportResults() {
-            console.log('Exporting results to file');
+        function targetFreq() {
+            console.log('🎯 TARGETING HOSTILE FREQUENCY');
         }
 
-        // Initialize everything when page loads
+        // Initialize Everything
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 INITIALIZING QUANTUM-SHIELD DEFENSE SYSTEM');
+            
             initNeuralBackground();
-            initSignalChart();
-            initActivityFeed();
-            updateSliderValues();
+            initAttackVisualization();
+            initSpectrumAnalyzer();
+            initThreatDetection();
+            initCountermeasures();
+            initActivityFeeds();
             
             // Start real-time updates
             setInterval(updateMetrics, 2000);
             
-            console.log('AI Signal Correction Dashboard initialized');
+            // Simulate periodic attacks
+            setInterval(() => {
+                if (!defenseState.attackInProgress && Math.random() < 0.15) {
+                    const attacks = ['burst', 'sweep', 'spoofing'];
+                    simulateAttack(attacks[Math.floor(Math.random() * attacks.length)]);
+                }
+            }, 30000);
+            
+            console.log('✅ QUANTUM-SHIELD DEFENSE SYSTEM ONLINE');
         });
 
         // Handle window resize
@@ -1597,9 +2255,13 @@
             neuralCanvas.width = window.innerWidth;
             neuralCanvas.height = window.innerHeight;
             
-            const signalCanvas = document.getElementById('signalChart');
-            signalCanvas.width = signalCanvas.offsetWidth;
-            signalCanvas.height = signalCanvas.offsetHeight;
+            const attackCanvas = document.getElementById('attackVisualization');
+            attackCanvas.width = attackCanvas.offsetWidth;
+            attackCanvas.height = attackCanvas.offsetHeight;
+            
+            const spectrumCanvas = document.getElementById('spectrumChart');
+            spectrumCanvas.width = spectrumCanvas.offsetWidth;
+            spectrumCanvas.height = spectrumCanvas.offsetHeight;
         });
     </script>
 </body>
